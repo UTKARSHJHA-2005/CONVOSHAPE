@@ -23,7 +23,7 @@ function App() {
     });
     return () => unsub(); 
   }, [fetchUserInfo]);
-  if (isLoading) return <div className='h-screen flex items-center justify-center'><Atom color="black" size="large" text="ConvoShape"/></div>
+  if (isLoading) return <div className='h-screen flex items-center justify-center'><Atom color="black" size="large"/></div>
   return (
     <div>
       {currentUser == null ? (
