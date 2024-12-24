@@ -161,10 +161,10 @@ export default function List() {
                 onChange={handleNameChange}
                 className="p-2 rounded-md" />
               <br />
-              <p className="text-white">📅Date Of Birth:</p>
+              <p className="text-white" title="Date of Birth">📅Date Of Birth:</p>
               <input type="date" className="h-[30px] mt-2 rounded-lg w-[200px] ml-3" value={dob} onChange={handleDobChange} />
               <br />
-              <p className="text-white">☏Phone:</p>
+              <p className="text-white" title="Phone">☏Phone:</p>
               <div className="space-y-2 flex flex-row">
                 <PhoneInput
                   international
@@ -180,11 +180,11 @@ export default function List() {
                   placeholder="Phone number"
                 />
               </div>
-              <p className="text-white">🛈About:</p>
+              <p className="text-white" title="About">🛈About:</p>
               <textarea type="text" className="h-auto w-[230px] rounded-md resize-none min-h-[30px]" value={about} onChange={setabout}/>
             </div>
             <button
-              onClick={handleSaveProfile}
+              onClick={handleSaveProfile} title="Save Profile"
               className="mt-5 text-white bg-green-500 px-4 py-2 rounded-md">
               Save Profile
             </button>
