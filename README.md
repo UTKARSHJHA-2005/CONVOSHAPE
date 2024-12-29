@@ -1,5 +1,6 @@
 
-#🚀 Convoshape - Real-Time Chat Application 💬
+**🚀 Convoshape - Real-Time Chat Application 💬**
+
 I am thrilled to share my latest project, Convoshape, a cutting-edge chat application built with React, Firebase.
 
 ✨Key Features:✨
