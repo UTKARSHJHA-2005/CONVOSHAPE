@@ -69,8 +69,8 @@ export default function Chatbox() {
           <p className="text-sm text-green-400">Hii, I am using Convo</p>
         </div>
         <div className="flex flex-row space-x-4">
-          <img src={phone} height={40} width={40} className="cursor-pointer" alt="Phone Call" />
-          <img src={video} height={40} width={40} className="cursor-pointer" alt="Video Call" />
+          <img src={phone} height={40} width={40} className="cursor-pointer" title="Voice Call" alt="Phone Call" />
+          <img src={video} height={40} width={40} className="cursor-pointer" title="Video Call" alt="Video Call" />
         </div>
       </div>
       <hr className="border-gray-500" />

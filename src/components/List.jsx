@@ -14,6 +14,9 @@ import plus from "../assets/plus.jpg";
 
 export default function List() {
   const [isAddUserVisible, setIsAddUserVisible] = useState(false);
+  const [NewName,setNewName]=useState();
+  const [Avatar,setNewAvatar]=useState();
+  const [chats, setChats] = useState([]); 
   const { currentUser } = Userstore();
   const [dob, setDob] = useState("");
   const { chatId, changeChat } = Chatstore();
@@ -75,8 +78,6 @@ export default function List() {
   const toggleAddUser = () => {
     setIsAddUserVisible((prev) => !prev);
   };
-  const validChats = chats.filter(c => c?.user && c?.user?.name);
-  console.log("Valid chats:", validChats);
 
   return (
     <div className="shadow-lg mt-[30px] text-center bg-gray-900 bg-opacity-80 rounded-xl p-4 border border-gray-500">
