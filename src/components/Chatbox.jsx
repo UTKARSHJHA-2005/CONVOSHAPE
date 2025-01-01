@@ -66,7 +66,7 @@ export default function Chatbox() {
         <img src={user?.avatar || avatar} height={30} width={50} className="rounded-full" alt="Sia Bhatia" />
         <div>
           <p className="font-bold text-white">{user?.name || "User"}</p>
-          <p className="text-sm text-green-400">Active now</p>
+          <p className="text-sm text-green-400">Hii, I am using Convo</p>
         </div>
         <div className="flex flex-row space-x-4">
           <img src={phone} height={40} width={40} className="cursor-pointer" alt="Phone Call" />

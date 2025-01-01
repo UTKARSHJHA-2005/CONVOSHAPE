@@ -10,9 +10,13 @@ export const Chatstore = create((set) => ({
   isRecieverBlocked: false,
   changeChat: (chatId, user) => {
     const currentUser = Userstore.getState().currentUser;
-    
+
+    // Validate if `blocked` arrays exist
+    const userBlocked = Array.isArray(user?.blocked) ? user.blocked : [];
+    const currentUserBlocked = Array.isArray(currentUser?.blocked) ? currentUser.blocked : [];
+
     // Check if the current user is blocked by the receiver
-    if (user.blocked.includes(currentUser.id)) {
+    if (userBlocked.includes(currentUser.id)) {
       return set({
         chatId,
         user: null,
@@ -21,7 +25,7 @@ export const Chatstore = create((set) => ({
       });
     }
     // Check if the receiver is blocked by the current user
-    else if (currentUser.blocked.includes(user.id)) {
+    else if (currentUserBlocked.includes(user.id)) {
       return set({
         chatId,
         user: null,
