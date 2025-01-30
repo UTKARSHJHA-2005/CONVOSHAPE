@@ -49,7 +49,6 @@ export const Adduser = ({ updateChats }) => {
       const currentUserChatRef = doc(userChatRef, currentUser.uid);
       const otherUserChatRef = doc(userChatRef, user.id);
       const chatSnapshot = await getDoc(chatRef);
-
       if (!chatSnapshot.exists()) {
         await setDoc(chatRef, { messages: [], lastMessage: null, createdAt: new Date().toISOString() });
       }

@@ -14,11 +14,11 @@ import plus from "../assets/plus.jpg";
 
 export default function List() {
   const [isAddUserVisible, setIsAddUserVisible] = useState(false);
-  const [NewName,setNewName]=useState();
-  const [Avatar,setNewAvatar]=useState();
+  const [NewName, setNewName] = useState();
+  const [Input, setInput] = useState("");
+  const [Avatar, setNewAvatar] = useState();
   const [chats, setChats] = useState([]); 
   const { currentUser } = Userstore();
-  const [dob, setDob] = useState("");
   const { chatId, changeChat } = Chatstore();
 
   useEffect(() => {
@@ -34,37 +34,20 @@ export default function List() {
     } else {
       setChats([]);
     }
-    const storedName = localStorage.getItem("userName");
-    const storedAvatar = localStorage.getItem("userAvatar");
-
-    if (storedName) {
-      setNewName(storedName);
-    }
-    if (storedAvatar) {
-      setNewAvatar(storedAvatar);
-    }
+    const filtered = chats.filter((chat) => chat.chatId !== chatId);
+    setChats(filtered);
   }, []);
 
   const handleSelect = async (chat) => {
-    console.log("Selected Chat Object:", chat);
-    if (!chat || !chat.id) {
-      console.error("Invalid chat object:", chat);
-      return;
-    }
-    const chatUser = chat?.user;
-    if (!chatUser) {
-      console.error("Invalid user object in chat:", chat);
-      return;
-    }
+    if (!chat || !chat.id) return;
     try {
       const updatedChats = chats.map((item) =>
         item.chatId === chat.id ? { ...item, isSeen: true } : item
       );
       const userchatref = doc(db, "userchats", currentUser.id);
       await updateDoc(userchatref, { chats: updatedChats });
-
       setChats(updatedChats);
-      changeChat(chat.id, chatUser);
+      changeChat(chat.id, chat.user);
     } catch (e) {
       console.error("Error updating chat:", e);
     }
@@ -78,7 +61,9 @@ export default function List() {
   const toggleAddUser = () => {
     setIsAddUserVisible((prev) => !prev);
   };
-
+  const filteredChats = chats.filter(chat =>
+    chat?.user?.name?.toLowerCase().includes(Input.toLowerCase())
+  );
   return (
     <div className="shadow-lg mt-[30px] text-center bg-gray-900 bg-opacity-80 rounded-xl p-4 border border-gray-500">
       <div className="flex flex-row items-center justify-between mb-5">
@@ -94,49 +79,46 @@ export default function List() {
           height={60}
           width={60}
           className="cursor-pointer rounded-3xl hover:bg-white "
-          alt="logout"
-        />
+          alt="logout"/>
       </div>
       <div className="flex flex-row items-center mb-5">
-        <img src={search} height={35} width={35} alt="searchbox rounded-md" />
+        <img src={search} height={35} width={35} alt="search" />
         <input
           type="text"
+          value={Input}
+          onChange={(e) => setInput(e.target.value)}
           className="h-[30px] w-[250px] focus:outline-none p-2 rounded-md"
-          placeholder="Search chats..." onChange={(e) => setInput(e.target.value)}
-        />
+          placeholder="Search chats..."/>
         <img
           src={plus}
           height={30}
           width={30}
           onClick={toggleAddUser}
           className="cursor-pointer ml-3"
-          alt="add user"
-        />
+          alt="add user"/>
       </div>
       {isAddUserVisible && <Adduser updateChats={updateChats} />}
       <div className="mt-5">
-        {chats.length > 0 ? (
-          chats
-            .map((chat, index) => (
-              chat?.user ? (  
-                <div
-                  key={index}
-                  className="flex items-center cursor-pointer justify-between bg-gray-800 p-4 rounded-md mb-4"
-                  onClick={() => handleSelect(chat)}>
-                  <div className="flex items-center">
-                    <img
-                      src={chat.user.avatar || avatar}
-                      height={40}
-                      width={40}
-                      className="rounded-full"
-                      alt="user"
-                    />
-                    <h3 className="text-white ml-4">{chat.user.name}</h3>
-                  </div>
-                  <p className="text-white">{chat?.lastMessage}</p>
+        {filteredChats.length > 0 ? (
+          filteredChats.map((chat, index) => (
+            chat?.user ? (  
+              <div
+                key={index}
+                className="flex items-center cursor-pointer justify-between bg-gray-800 p-4 rounded-md mb-4"
+                onClick={() => handleSelect(chat)}>
+                <div className="flex items-center">
+                  <img
+                    src={chat.user.avatar || avatar}
+                    height={40}
+                    width={40}
+                    className="rounded-full"
+                    alt="user"/>
+                  <h3 className="text-white ml-4">{chat.user.name}</h3>
                 </div>
-              ) : null
-            ))
+                <p className="text-white">{chat?.lastMessage}</p>
+              </div>
+            ) : null
+          ))
         ) : (
           <p className="text-white">No chats available</p>
         )}
