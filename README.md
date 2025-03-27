@@ -12,7 +12,16 @@ I am thrilled to share my latest project, Convoshape, a cutting-edge chat applic
 Building Convoshape taught me the implementation of real-time features, managing state efficiently in React, and ensuring a secure and scalable application architecture.<br/>
 I’m incredibly proud of how Convoshape fosters meaningful connections and provides a smooth user experience. This project underscores my passion for creating impactful applications that prioritize performance and usability.This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.<br/>
 
-Currently, two official plugins are available:
+🛠 Tech Stack
+Frontend: React.js (with Vite), Tailwind CSS.
+Backend Setup: Firebase.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔧 Prerequisites
+1)Vite With TailwindCSS
+2)Node.js (v16+ recommended)
+3)Firebase
+
+📥 Installation Steps
+
+1) Clone the Repository
+   ``` git clone  ```
