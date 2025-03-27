@@ -1,6 +1,4 @@
-import { create } from 'zustand';
-import { db } from './db';
-import { doc, getDoc } from 'firebase/firestore';
+import { create } from 'zustand'; // Zustand State Management
 import { Userstore } from './usestore'; // Make sure Userstore is imported
 
 export const Chatstore = create((set) => ({
@@ -10,11 +8,9 @@ export const Chatstore = create((set) => ({
   isRecieverBlocked: false,
   changeChat: (chatId, user) => {
     const currentUser = Userstore.getState().currentUser;
-
     // Validate if `blocked` arrays exist
     const userBlocked = Array.isArray(user?.blocked) ? user.blocked : [];
     const currentUserBlocked = Array.isArray(currentUser?.blocked) ? currentUser.blocked : [];
-
     // Check if the current user is blocked by the receiver
     if (userBlocked.includes(currentUser.id)) {
       return set({
@@ -32,7 +28,7 @@ export const Chatstore = create((set) => ({
         isCurrentUserBlocked: false,
         isRecieverBlocked: true,
       });
-    } else {
+    } else { // If not blocked,then accept the message
       set({
         chatId,
         user,

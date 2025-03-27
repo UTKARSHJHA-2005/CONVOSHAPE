@@ -9,9 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "engines": {
-    "node": "16.x"
-  },
   "dependencies": {
     "emoji-picker-react": "^4.12.0",
     "firebase": "^11.0.2",
