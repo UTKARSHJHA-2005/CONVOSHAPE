@@ -55,22 +55,36 @@ export default function Signup({ onNavigateToLogin }) { // Pass Navigation handl
   const googlesignin = async () => {
     try {
       const result = await signInWithPopup(auth, Google);
-      await setDoc(doc(db, "users", result.user.uid), {
-        name,
-        email,
-        id: result.user.uid,
-        blocked: [],
-      });
-      await setDoc(doc(db, "userchats", result.user.uid), {
-        chats: [],
-      });
-      console.log("Google sign-up successful:", result.user);
+
+      const user = result.user;
+
+      await setDoc(
+        doc(db, "users", user.uid),
+        {
+          name: user.displayName || "",
+          email: user.email || "",
+          id: user.uid,
+          blocked: [],
+        },
+        { merge: true } // IMPORTANT
+      );
+
+      await setDoc(
+        doc(db, "userchats", user.uid),
+        {
+          chats: [],
+        },
+        { merge: true }
+      );
+
+      console.log("Google sign-up successful:", user);
       alert("Google sign-up successful!");
     } catch (error) {
       console.error("Google sign-up error:", error);
       alert(error.message);
     }
   };
+
 
   return (
     <div className="shadow-lg mt-[30px] text-center bg-gray-900 bg-opacity-80 rounded-xl p-6 border border-gray-500">
