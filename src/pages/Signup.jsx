@@ -78,30 +78,30 @@ export default function Signup({ onNavigateToLogin }) { // Pass Navigation handl
       {/* Ibput Fields */}
       <div>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter the Name"
-        className="w-[400px] h-[50px] mt-[10px] border-white rounded-lg px-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
-        required/><br />
+          className="w-[400px] h-[50px] mt-[10px] border-white rounded-lg px-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
+          required /><br />
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter Email Address"
-        className="w-[400px] h-[50px] mt-[10px] border-white rounded-lg px-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
-        required/><br />
+          className="w-[400px] h-[50px] mt-[10px] border-white rounded-lg px-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
+          required /><br />
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password"
-        className="w-[400px] h-[50px] mt-[10px] border-white rounded-lg px-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
-        required/><br />
-      </div>
-      {/* Google Sign-in */}
-      <div className="flex flex-col items-center">
-        <button onClick={googlesignin}
-        className="flex items-center justify-center bg-blue-500 mt-[15px] rounded-xl h-[50px] text-white hover:bg-blue-700 w-[400px] space-x-2">
-          <img src={google} alt="google" className="w-9 h-9" />
-          <span>Continue with Google</span>
-        </button>
+          className="w-[400px] h-[50px] mt-[10px] border-white rounded-lg px-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
+          required /><br />
       </div>
       {/* Agreement */}
       <div className="mt-[10px] flex items-center justify-center space-x-2">
-        <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)}/>
+        <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} />
         <p className="text-[16px] font-semibold text-white">
           Agree to the terms and conditions
         </p>
       </div><br />
+      {/* Google Sign-in */}
+      <div className="flex flex-col items-center">
+        <button onClick={googlesignin}
+          className="flex items-center justify-center bg-blue-500 mt-[15px] rounded-xl h-[50px] text-white hover:bg-blue-700 w-[400px] space-x-2">
+          <img src={google} alt="google" className="w-9 h-9" />
+          <span>Continue with Google</span>
+        </button>
+      </div>
       {/* Sign-up Button */}
       <button type="button" onClick={register} className="bg-blue-800 text-white hover:bg-blue-600 rounded-xl h-[50px] w-[400px] mt-[10px]">
         SignUp
