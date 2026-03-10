@@ -30,19 +30,6 @@ export default function Chatbox() {
     });
     return () => unsub();
   }, [chatId]);
-  useEffect(() => {
-
-    const unsub = onSnapshot(doc(db, "user", currentUser.id), (snap) => {
-
-      if (snap.exists()) {
-        setBlockedUsers(snap.data().blocked || []);
-      }
-
-    });
-
-    return () => unsub();
-
-  }, [chatId]);
   // Blocked Users
   useEffect(() => {
     const fetchBlocked = async () => {
