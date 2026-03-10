@@ -30,6 +30,7 @@ export default function Chatbox() {
   const { currentUser } = Userstore(); // Current User
   const [Chat, setChat] = useState(); // Chat state
   const endRef = useRef(null); // Scrolling
+  const [incomingCall, setIncomingCall] = useState(null); // Incoming call
   const [callType, setCallType] = useState(null); // Call type
   const ringtone = new Audio("/ringtone.mp3"); // Sound
   // Play
