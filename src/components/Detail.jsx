@@ -75,6 +75,7 @@ export default function Detail() {
                   <img
                     src={img}
                     alt="media"
+                    onClick={() => setSelectedImage(img)}
                     className="w-full h-[80px] object-cover cursor-pointer transition-transform duration-300 group-hover:scale-110"
                   />
 
