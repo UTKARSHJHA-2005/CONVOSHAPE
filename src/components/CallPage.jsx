@@ -102,6 +102,7 @@ export default function CallPage({ type, onEnd }) {
                         ref={localVideo}
                         autoPlay
                         muted
+                        playsInline
                         className="w-24 rounded-lg absolute bottom-2 right-2 border border-white"
                     />
 
