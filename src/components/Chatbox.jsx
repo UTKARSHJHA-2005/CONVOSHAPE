@@ -30,9 +30,7 @@ export default function Chatbox() {
   const { currentUser } = Userstore(); // Current User
   const [Chat, setChat] = useState(); // Chat state
   const endRef = useRef(null); // Scrolling
-  const localVideoRef = useRef(null); // Video local
-  const remoteVideoRef = useRef(null); // Video
-  const pcRef = useRef(null);  // Laptop 
+
   const [callType, setCallType] = useState(null); // Call type
   const localStreamRef = useRef(null); // Streaming
   const ringtone = new Audio("/ringtone.mp3");
