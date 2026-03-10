@@ -273,14 +273,6 @@ export default function Chatbox() {
           </div>
         </div>
       )}
-      {callType && (
-        <CallPage
-          type={callType}
-          chatId={chatId}
-          isCaller={isCaller}
-          onEnd={() => setCallType(null)}
-        />
-      )}
     </div>
   );
 }
