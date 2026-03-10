@@ -66,6 +66,47 @@ export default function Chatbox() {
     setText((prev) => prev + e.emoji);
   };
 
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, "calls", chatId), async (snapshot) => {
+      const data = snapshot.data();
+
+      if (!pcRef.current && data?.offer) {
+        pcRef.current = new RTCPeerConnection(servers);
+
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true,
+        });
+
+        stream.getTracks().forEach((track) => {
+          pcRef.current.addTrack(track, stream);
+        });
+
+        await pcRef.current.setRemoteDescription(
+          new RTCSessionDescription(data.offer)
+        );
+
+        const answer = await pcRef.current.createAnswer();
+        await pcRef.current.setLocalDescription(answer);
+
+        await updateDoc(doc(db, "calls", chatId), {
+          answer: {
+            type: answer.type,
+            sdp: answer.sdp,
+          },
+        });
+      }
+
+      if (pcRef.current && data?.answer) {
+        await pcRef.current.setRemoteDescription(
+          new RTCSessionDescription(data.answer)
+        );
+      }
+    });
+
+    return () => unsub();
+  }, [chatId]);
+
   return (
     <div className="h-[600px] chatbox shadow-lg mt-[30px] text-center bg-gray-800 bg-opacity-90 rounded-xl p-6 border border-gray-500 flex flex-col">
       {/* Chat Header */}
