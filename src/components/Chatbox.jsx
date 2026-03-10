@@ -30,17 +30,6 @@ export default function Chatbox() {
     });
     return () => unsub();
   }, [chatId]);
-  // Blocked Users
-  useEffect(() => {
-    const fetchBlocked = async () => {
-      const userDoc = await getDoc(doc(db, "user", currentUser.id));
-      if (userDoc.exists()) {
-        setBlockedUsers(userDoc.data().blocked || []);
-      }
-    };
-
-    fetchBlocked();
-  }, [currentUser.id]);
   const uploadImage = async (file) => {
 
     const data = new FormData();
