@@ -140,7 +140,7 @@ export default function Chatbox() {
           />
         )}
         {/* Add Image,mic,text,emoji Button */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-2">
           <input type="file" onChange={handleImageChange} className="hidden" id="image-upload" />
           <label htmlFor="image-upload">
             <img src={addimg} height={30} width={30} className="cursor-pointer" alt="Add Image" />
