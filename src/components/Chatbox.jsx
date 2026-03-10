@@ -18,6 +18,7 @@ export default function Chatbox() {
   const [Chat, setChat] = useState(); // Chat state
   const endRef = useRef(null); // Scrolling
   const [image, setImage] = useState(null); // Image state
+  const [blockedUsers, setBlockedUsers] = useState([]); // Block
   // Smooth scrolling to the end of the chat
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
