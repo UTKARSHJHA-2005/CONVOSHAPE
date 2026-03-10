@@ -35,6 +35,17 @@ export default function Chatbox() {
   const pcRef = useRef(null);  // Laptop 
   const [callType, setCallType] = useState(null); // Call type
   const localStreamRef = useRef(null); // Streaming
+  const ringtone = new Audio("/ringtone.mp3");
+
+  const playRingtone = () => {
+    ringtone.loop = true;
+    ringtone.play();
+  };
+
+  const stopRingtone = () => {
+    ringtone.pause();
+    ringtone.currentTime = 0;
+  };
   // Smooth scrolling to the end of the chat
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
