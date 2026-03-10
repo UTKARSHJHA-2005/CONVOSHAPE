@@ -108,7 +108,7 @@ export default function Chatbox() {
                 ? "flex-row-reverse text-right"
                 : "flex-row text-left"
                 }`}>
-                <div className="message-bubble max-w-[70%]">
+                <div className="message-bubble max-w-[80%] md:max-w-[60%]">
                   {message.text && (
                     <p className={`p-3 rounded-lg ${message.senderId === currentUser.id
                       ? "bg-blue-600 mt-2 text-white"
