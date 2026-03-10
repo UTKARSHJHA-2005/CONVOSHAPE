@@ -41,24 +41,6 @@ export default function Detail() {
     }
   }, [chatId, user?.id]);
 
-  // Blocking the chat user by removing the user from user collection in db.
-  const handleBlock = async () => {
-    if (!user) return;
-    const userDocRef = doc(db, "user", currentUser.id);
-    try {
-      const docSnap = await getDoc(userDocRef);
-      if (!docSnap.exists()) {
-        await setDoc(userDocRef, { blocked: [] });
-      }
-      await updateDoc(userDocRef, {
-        blocked: isRecieverBlocked ? arrayRemove(user.id) : arrayUnion(user.id),
-      });
-      changeBlock();
-    } catch (error) {
-      console.error("Error blocking user:", error);
-    }
-  };
-
   return (
     <div className="shadow-lg mt-[30px] text-center bg-gray-800 bg-opacity-90 rounded-xl p-6 border border-gray-500">
       {/* User Details */}
