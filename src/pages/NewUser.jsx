@@ -5,7 +5,6 @@ import { collection, query, where, getDocs, setDoc, doc, getDoc, updateDoc, arra
 import { db } from "../db"; // db instance
 import search from "../assets/search.jpg"; // Image
 import avatar from "../assets/avatar.jpg"; // Image
-import { Userstore } from "../usestore"; // Userstore
 
 export const Adduser = ({ updateChats }) => {
   const [isVisible, setIsVisible] = useState(true);// State for dialog box
@@ -78,7 +77,7 @@ export const Adduser = ({ updateChats }) => {
       const newChat = { id: chatId, user: user, lastMessage: "", receiverId: user.id };
       updateChats((prevChats) => {
         const updatedChats = [newChat, ...prevChats];
-        localStorage.setItem("chats", JSON.stringify(updatedChats)); 
+        localStorage.setItem("chats", JSON.stringify(updatedChats));
         return updatedChats;
       });
     } catch (err) {
@@ -98,16 +97,16 @@ export const Adduser = ({ updateChats }) => {
             {/* Search */}
             <form className="flex flex-row mt-5" onSubmit={handleSearch}>
               <input type="text" name="name" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-[300px] focus:outline-none rounded-lg" placeholder="Search by Name..."/>
+                className="w-[300px] focus:outline-none rounded-lg" placeholder="Search by Name..." />
               <button type="submit">
-                <img src={search} className="cursor-pointer" height={30} width={30} alt="search"/>
+                <img src={search} className="cursor-pointer" height={30} width={30} alt="search" />
               </button>
             </form>
             {/* User with add button */}
             {user && (
               <div className="flex flex-row mt-4">
                 <div className="flex flex-row">
-                  <img src={user.avatar || avatar} height={50} width={50} className="rounded-full" alt="user-avatar"/>
+                  <img src={user.avatar || avatar} height={50} width={50} className="rounded-full" alt="user-avatar" />
                   <h3 className="text-white mt-3 ml-2">{user.name}</h3>
                 </div>
                 <button type="button" onClick={handleAddUser} className="ml-24 bg-green-500 text-white rounded-lg px-4 py-2">
