@@ -7,6 +7,7 @@ import video from "../assets/video.png";
 import mic from "../assets/mic.png";
 import emojiIcon from "../assets/emoji.png";
 import addimg from "../assets/addimg.png";
+import CallPage from "./CallPage";
 import { db } from "../db"; // Firebase Database
 import { Userstore } from "../usestore"; // Userstore
 import { Chatstore } from "../ChatStore"; // Chatstore
