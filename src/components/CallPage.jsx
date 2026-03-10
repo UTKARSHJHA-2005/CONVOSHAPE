@@ -6,7 +6,7 @@ const servers = {
     iceServers: [{ urls: ["stun:stun.l.google.com:19302"] }],
 };
 
-export default function CallPage({ type, chatId, onEnd }) {
+export default function CallPage({ type, chatId, isCaller, onEnd }) {
     const localVideo = useRef(null);
     const remoteVideo = useRef(null);
     const pc = useRef(null);
