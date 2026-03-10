@@ -15,10 +15,6 @@ export default function CallPage({ type, chatId, onEnd }) {
     const [videoOn, setVideoOn] = useState(type === "video");
     const [muted, setMuted] = useState(false);
 
-    useEffect(() => {
-        startMedia();
-    }, []);
-
     const startMedia = async () => {
         try {
             pc.current = new RTCPeerConnection(servers);
