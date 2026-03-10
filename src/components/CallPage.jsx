@@ -65,9 +65,11 @@ export default function CallPage({ type, onEnd }) {
     const toggleMute = () => {
         if (!stream) return;
 
-        const audioTrack = stream.getAudioTracks()[0];
+        const audioTracks = stream.getAudioTracks();
 
-        if (!audioTrack) return;
+        if (!audioTracks || audioTracks.length === 0) return;
+
+        const audioTrack = audioTracks[0];
 
         audioTrack.enabled = !audioTrack.enabled;
         setMuted(!audioTrack.enabled);
