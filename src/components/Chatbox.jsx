@@ -104,31 +104,33 @@ export default function Chatbox() {
       {/* Chat Area */}
       <div className="chat-area flex-grow overflow-y-auto p-4 rounded-lg shadow-lg scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-800">
         <div className="messages">
-          {Chat?.messages?.map((message, idx) => (
-            <div key={idx} className={`w-[100%] mb-2 flex ${message.senderId === currentUser.id
-              ? "flex-row-reverse text-right"
-              : "flex-row text-left"
-              }`}>
-              <div className="message-bubble max-w-[70%]">
-                {message.text && (
-                  <p className={`p-3 rounded-lg ${message.senderId === currentUser.id
-                    ? "bg-blue-600 mt-2 text-white"
-                    : "bg-gray-600 text-white mt-2"
-                    }`}>
-                    {message.text}
-                  </p>
-                )}
-                {message.image && (
-                  <img
-                    src={message.image}
-                    alt="Sent"
-                    className={`w-auto cursor-pointer h-auto max-w-[200px] mt-2 rounded-lg ${message.senderId === currentUser.id ? "float-right" : "float-left"
-                      }`}
-                  />
-                )}
+          {Chat?.messages
+            ?.filter((msg) => !blockedUsers.includes(msg.senderId))
+            ?.map((message, idx) => (
+              <div key={idx} className={`w-[100%] mb-2 flex ${message.senderId === currentUser.id
+                ? "flex-row-reverse text-right"
+                : "flex-row text-left"
+                }`}>
+                <div className="message-bubble max-w-[70%]">
+                  {message.text && (
+                    <p className={`p-3 rounded-lg ${message.senderId === currentUser.id
+                      ? "bg-blue-600 mt-2 text-white"
+                      : "bg-gray-600 text-white mt-2"
+                      }`}>
+                      {message.text}
+                    </p>
+                  )}
+                  {message.image && (
+                    <img
+                      src={message.image}
+                      alt="Sent"
+                      className={`w-auto cursor-pointer h-auto max-w-[200px] mt-2 rounded-lg ${message.senderId === currentUser.id ? "float-right" : "float-left"
+                        }`}
+                    />
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
           <div ref={endRef}></div>
         </div>
       </div>
