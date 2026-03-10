@@ -150,7 +150,7 @@ export default function CallPage({ type, chatId, isCaller, onEnd }) {
         });
 
         return () => unsub();
-    }, []);
+    }, [chatId]);
     useEffect(() => {
         if (!chatId) return;
         startMedia();
