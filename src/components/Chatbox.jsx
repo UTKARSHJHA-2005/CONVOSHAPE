@@ -25,11 +25,18 @@ export default function Chatbox() {
   }, [Chat]);
   // Fetch chat details
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "chats", chatId), (res) => {
-      setChat(res.data());
+
+    const unsub = onSnapshot(doc(db, "user", currentUser.id), (snap) => {
+
+      if (snap.exists()) {
+        setBlockedUsers(snap.data().blocked || []);
+      }
+
     });
+
     return () => unsub();
-  }, [chatId]);
+
+  }, [currentUser.id]);
   // Blocked Users
   useEffect(() => {
     const fetchBlocked = async () => {
