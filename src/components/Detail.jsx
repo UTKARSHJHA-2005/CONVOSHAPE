@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 // Images
 import avatar from '../assets/avatar.jpg';
-import addgrp from "../assets/addgroup.png";
-import mute from "../assets/mute.png";
 import block from "../assets/block.png";
 import { Chatstore } from "../ChatStore"; // Chatstore
 import { Userstore } from "../usestore"; // Userstore
