@@ -9,7 +9,7 @@ import { doc, getDoc, setDoc, arrayRemove, arrayUnion, updateDoc } from "firebas
 import { db } from "../db";  // Firebase Database
 
 export default function Detail() {
-  const { chatId, user, isRecieverBlocked, changeBlock } = Chatstore(); // Chat Management
+  const { chatId, user } = Chatstore(); // Chat Management
   const { currentUser } = Userstore(); // User Management
   const [images, setImages] = useState([]); // State to store sent images
 
