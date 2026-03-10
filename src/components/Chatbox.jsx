@@ -137,13 +137,11 @@ export default function Chatbox() {
       </div>
       {/* Input Area */}
       <div className="input-area mt-4 flex flex-col space-y-2">
-        {imageBase64 && (
-          <div className="image-preview p-2 border border-gray-700 rounded-lg flex justify-between items-center">
-            <img src={imageBase64} alt="Preview" className="max-w-[200px] max-h-[200px] rounded-lg" />
-            <button onClick={() => setImageBase64(null)} className="text-red-500 font-bold">
-              Cancel
-            </button>
-          </div>
+        {image && (
+          <img
+            src={URL.createObjectURL(image)}
+            className="max-w-[200px] rounded"
+          />
         )}
         {/* Add Image,mic,text,emoji Button */}
         <div className="flex items-center space-x-2">
