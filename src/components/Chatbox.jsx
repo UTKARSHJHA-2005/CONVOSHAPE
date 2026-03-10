@@ -52,7 +52,7 @@ export default function Chatbox() {
       setChat(res.data());
     });
     return () => unsub();
-  }, [chatId, currentUser]);
+  }, [chatId]);
   // Handle sending a message
   const handleSend = async () => {
     if (!text.trim() && !imageBase64) return;

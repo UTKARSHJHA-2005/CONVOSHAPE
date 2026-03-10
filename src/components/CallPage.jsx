@@ -43,8 +43,14 @@ export default function CallPage({ type, onEnd }) {
     };
 
     const toggleVideo = () => {
-        stream.getVideoTracks()[0].enabled = !videoOn;
-        setVideoOn(!videoOn);
+        if (!stream) return;
+
+        const videoTrack = stream.getVideoTracks()[0];
+
+        if (!videoTrack) return;
+
+        videoTrack.enabled = !videoTrack.enabled;
+        setVideoOn(videoTrack.enabled);
     };
 
     const toggleMute = () => {
