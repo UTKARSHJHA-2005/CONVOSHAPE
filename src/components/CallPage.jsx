@@ -20,9 +20,14 @@ export default function CallPage({ type, chatId, isCaller, onEnd }) {
             pc.current = new RTCPeerConnection(servers);
 
             const media = await navigator.mediaDevices.getUserMedia({
-                video: type === "video",
+                video: true,
                 audio: true,
             });
+            if (type === "voice") {
+                media.getVideoTracks().forEach(track => {
+                    track.enabled = false;
+                });
+            }
 
             setStream(media);
 
