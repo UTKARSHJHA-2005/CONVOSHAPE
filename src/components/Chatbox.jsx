@@ -15,7 +15,6 @@ import { arrayUnion, onSnapshot, doc, updateDoc } from "firebase/firestore"; // 
 
 export default function Chatbox() {
   const [text, setText] = useState(""); // Text input state
-  const [imageBase64, setImageBase64] = useState(null);  // Image state
   const { chatId, user, isCurrentUserBlocked, isRecieverBlocked, changeBlock } = Chatstore() // Chat Management
   const [open, setOpen] = useState(false); // Emoji Picker state
   const { currentUser } = Userstore(); // Current User
