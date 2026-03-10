@@ -99,9 +99,13 @@ export default function Chatbox() {
   // Accept Call
   const acceptCall = async () => {
     stopRingtone();
+
+    setIsCaller(false); // RECEIVER
+
     await updateDoc(doc(db, "calls", chatId), {
       status: "accepted",
     });
+
     setCallType(incomingCall.type);
     setIncomingCall(null);
   };
