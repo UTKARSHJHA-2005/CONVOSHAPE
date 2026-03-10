@@ -172,7 +172,7 @@ export default function Chatbox() {
             className="cursor-pointer"
             title="Voice Call"
             alt="Phone Call"
-            onClick={() => startCall("voice")}
+            onClick={() => setCallType("voice")}
           />
 
           <img
@@ -182,7 +182,7 @@ export default function Chatbox() {
             className="cursor-pointer"
             title="Video Call"
             alt="Video Call"
-            onClick={() => startCall("video")}
+            onClick={() => setCallType("video")}
           />
         </div>
       </div>
