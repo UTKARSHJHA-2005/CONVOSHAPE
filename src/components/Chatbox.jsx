@@ -254,6 +254,12 @@ export default function Chatbox() {
         <video ref={localVideoRef} autoPlay muted className="w-40 rounded-lg"></video>
         <video ref={remoteVideoRef} autoPlay className="w-40 rounded-lg"></video>
       </div>
+      {callType && (
+        <CallPage
+          type={callType}
+          onEnd={() => setCallType(null)}
+        />
+      )}
     </div>
   );
 }
