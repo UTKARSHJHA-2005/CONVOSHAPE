@@ -52,9 +52,11 @@ export default function CallPage({ type, onEnd }) {
     const toggleVideo = () => {
         if (!stream) return;
 
-        const videoTrack = stream.getVideoTracks()[0];
+        const videoTracks = stream.getVideoTracks();
 
-        if (!videoTrack) return;
+        if (!videoTracks || videoTracks.length === 0) return;
+
+        const videoTrack = videoTracks[0];
 
         videoTrack.enabled = !videoTrack.enabled;
         setVideoOn(videoTrack.enabled);
