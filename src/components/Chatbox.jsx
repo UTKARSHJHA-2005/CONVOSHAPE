@@ -130,7 +130,7 @@ export default function Chatbox() {
     });
 
     return () => unsub();
-  }, [chatId]);
+  }, [chatId, currentUser]);
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "calls", chatId), (snap) => {
       const data = snap.data();
