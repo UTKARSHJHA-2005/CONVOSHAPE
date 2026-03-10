@@ -17,18 +17,35 @@ export default function CallPage({ type, chatId, isCaller, onEnd }) {
 
     const startMedia = async () => {
         try {
+
+            const callDoc = doc(db, "calls", chatId);   // ✅ FIRST
+
             pc.current = new RTCPeerConnection(servers);
 
             const media = await navigator.mediaDevices.getUserMedia({
                 video: true,
                 audio: true,
             });
-            if (type === "voice") {
-                media.getVideoTracks().forEach(track => {
-                    track.enabled = false;
-                });
+
+            setStream(media);
+
+            if (localVideo.current) {
+                localVideo.current.srcObject = media;
             }
+
+            media.getTracks().forEach((track) => {
+                pc.current.addTrack(track, media);
+            });
+
+            pc.current.ontrack = (event) => {
+                if (remoteVideo.current) {
+                    remoteVideo.current.srcObject = event.streams[0];
+                }
+            };
+
+            // create offer only if caller
             if (isCaller) {
+
                 const offer = await pc.current.createOffer();
                 await pc.current.setLocalDescription(offer);
 
@@ -38,27 +55,8 @@ export default function CallPage({ type, chatId, isCaller, onEnd }) {
                         sdp: offer.sdp,
                     },
                 });
+
             }
-
-            setStream(media);
-
-            if (localVideo.current) {
-                localVideo.current.srcObject = media;
-            }
-
-            // add tracks FIRST
-            media.getTracks().forEach((track) => {
-                pc.current.addTrack(track, media);
-            });
-
-            // receive remote stream
-            pc.current.ontrack = (event) => {
-                if (remoteVideo.current) {
-                    remoteVideo.current.srcObject = event.streams[0];
-                }
-            };
-
-            const callDoc = doc(db, "calls", chatId);
 
             pc.current.onicecandidate = async (event) => {
                 if (event.candidate) {
