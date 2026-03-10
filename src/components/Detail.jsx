@@ -81,7 +81,6 @@ export default function Detail() {
       </div>
       <hr className="my-2 border-gray-500" />
       {/* Sent Images */}
-      {/* Sent Images */}
       <div className="mt-4 w-full">
 
         <div className="flex justify-between items-center mb-2">
