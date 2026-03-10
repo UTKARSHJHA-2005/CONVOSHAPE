@@ -18,28 +18,17 @@ export default function CallPage({ type, onEnd }) {
     }, []);
 
     const startMedia = async () => {
-        pc.current = new RTCPeerConnection(servers);
+        try {
+            const media = await navigator.mediaDevices.getUserMedia({
+                video: type === "video",
+                audio: true,
+            });
 
-        const media = await navigator.mediaDevices.getUserMedia({
-            video: type === "video",
-            audio: true,
-        });
+            setStream(media);
 
-        setStream(media);
-
-        media.getTracks().forEach((track) => {
-            pc.current.addTrack(track, media);
-        });
-
-        if (localVideo.current) {
-            localVideo.current.srcObject = media;
+        } catch (err) {
+            console.error("Camera/Mic permission error:", err);
         }
-
-        pc.current.ontrack = (event) => {
-            if (remoteVideo.current) {
-                remoteVideo.current.srcObject = event.streams[0];
-            }
-        };
     };
 
     const toggleVideo = () => {
