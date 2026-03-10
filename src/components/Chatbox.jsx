@@ -65,7 +65,7 @@ export default function Chatbox() {
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
   };
-
+  // Incoming Calls
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "calls", chatId), async (snapshot) => {
       const data = snapshot.data();
