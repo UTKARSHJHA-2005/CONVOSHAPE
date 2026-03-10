@@ -81,19 +81,45 @@ export default function Detail() {
       </div>
       <hr className="my-2 border-gray-500" />
       {/* Sent Images */}
-      <div>
-        <div className="flex flex-row">
-          <p className="text-white font-bold mb-2 text-left">Media:</p>
+      {/* Sent Images */}
+      <div className="mt-4 w-full">
+
+        <div className="flex justify-between items-center mb-2">
+          <p className="text-white font-semibold text-left">Media</p>
+          <span className="text-gray-400 text-sm">{images.length}</span>
         </div>
-        <div className="grid grid-cols-3 gap-2 mt-3">
+
+        <div className="max-h-[220px] overflow-y-auto pr-1">
+
           {images.length > 0 ? (
-            images.map((img, idx) => (
-              <img key={idx} src={img} alt={`Sent image ${idx}`} className="w-full h-auto rounded-lg" />
-            ))
+
+            <div className="grid grid-cols-3 gap-2">
+
+              {images.map((img, idx) => (
+                <div
+                  key={idx}
+                  className="relative group overflow-hidden rounded-lg"
+                >
+
+                  <img
+                    src={img}
+                    alt="media"
+                    className="w-full h-[80px] object-cover cursor-pointer transition-transform duration-300 group-hover:scale-110"
+                  />
+
+                </div>
+              ))}
+
+            </div>
+
           ) : (
-            <p className="text-white text-center">No media available</p>
+            <p className="text-gray-400 text-sm text-center mt-4">
+              No media shared
+            </p>
           )}
+
         </div>
+
       </div>
       {/* Privacy & Help Button */}
       <button className="h-[40px] mt-6 w-full bg-gray-600 text-white hover:bg-black rounded-md">Privacy & Help</button>
