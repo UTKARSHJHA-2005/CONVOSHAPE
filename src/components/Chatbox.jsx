@@ -50,6 +50,40 @@ export default function Chatbox() {
       console.error("Error sending message:", error);
     }
   };
+  const startCall = async (type) => {
+    pcRef.current = new RTCPeerConnection(servers);
+
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: type === "video",
+      audio: true,
+    });
+
+    localStreamRef.current = stream;
+
+    stream.getTracks().forEach((track) => {
+      pcRef.current.addTrack(track, stream);
+    });
+
+    if (localVideoRef.current) {
+      localVideoRef.current.srcObject = stream;
+    }
+
+    pcRef.current.ontrack = (event) => {
+      if (remoteVideoRef.current) {
+        remoteVideoRef.current.srcObject = event.streams[0];
+      }
+    };
+
+    const offer = await pcRef.current.createOffer();
+    await pcRef.current.setLocalDescription(offer);
+
+    await updateDoc(doc(db, "calls", chatId), {
+      offer: {
+        type: offer.type,
+        sdp: offer.sdp,
+      },
+    });
+  };
   // Handle image upload
   const handleImageChange = (e) => {
     const file = e.target.files[0];
