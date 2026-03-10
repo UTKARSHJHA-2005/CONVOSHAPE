@@ -75,6 +75,8 @@ export default function Chatbox() {
   };
   // Call
   const startCall = async (type) => {
+    setIsCaller(true); // THIS USER IS CALLER
+
     await setDoc(doc(db, "calls", chatId), {
       callerId: currentUser.id,
       receiverId: user.id,
