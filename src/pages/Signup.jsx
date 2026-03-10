@@ -1,6 +1,6 @@
 // SignUp Page
 import React, { useState } from "react";
-import google from "../assets/google.jpg"; // Image
+import google from "../assets/google.png"; // Image
 import { setDoc, doc } from 'firebase/firestore'; // Firebase Firestore
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"; // Firebase Authentication
 import { app, db } from "../db"; // db instance
