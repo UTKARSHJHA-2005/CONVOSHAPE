@@ -37,10 +37,10 @@ export default function Chatbox() {
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "chat_app");
-    data.append("cloud_name", "your_cloud_name");
+    data.append("cloud_name", "COVO");
 
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/your_cloud_name/image/upload",
+      "https://api.cloudinary.com/v1_1/COVO/image/upload",
       {
         method: "POST",
         body: data,
