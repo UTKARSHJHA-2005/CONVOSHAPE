@@ -18,18 +18,28 @@ export default function Detail() {
   // Storing the messages in chats collection in db if chat id and user id is present.
   useEffect(() => {
     if (user?.id && chatId) {
+
       const fetchChat = async () => {
+
         const chatDocRef = doc(db, "chats", chatId);
         const chatSnap = await getDoc(chatDocRef);
+
         const chatData = chatSnap.data();
+
         if (chatData) {
+
           const sentImages = chatData.messages
-            .filter((msg) => msg.imageBase64) // Filter messages with images
-            .map((msg) => msg.imageBase64);  // Extract image URLs
+            ?.filter((msg) => msg.image) // check image url
+            .map((msg) => msg.image);   // get image url
+
           setImages(sentImages);
+
         }
+
       };
+
       fetchChat();
+
     }
   }, [chatId, user?.id]);
 
