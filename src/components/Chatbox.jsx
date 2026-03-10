@@ -32,6 +32,25 @@ export default function Chatbox() {
     });
     return () => unsub();
   }, [chatId]);
+  const uploadImage = async (file) => {
+
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "chat_app");
+    data.append("cloud_name", "your_cloud_name");
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/your_cloud_name/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+
+    const result = await res.json();
+
+    return result.secure_url;
+  };
   // Handle sending a message
   const handleSend = async () => {
     if (!text.trim() && !imageBase64) return;
