@@ -121,8 +121,6 @@ export default function Detail() {
         </div>
 
       </div>
-      {/* Privacy & Help Button */}
-      <button className="h-[40px] mt-6 w-full bg-gray-600 text-white hover:bg-black rounded-md">Privacy & Help</button>
     </div>
   );
 }
