@@ -85,7 +85,6 @@ export default function Signup({ onNavigateToLogin }) { // Pass Navigation handl
     }
   };
 
-
   return (
     <div className="shadow-lg mt-[30px] text-center bg-gray-900 bg-opacity-80 rounded-xl p-6 border border-gray-500">
       <div className="text-[25px] font-semibold text-white mb-4">SignUp</div>
