@@ -87,7 +87,7 @@ export default function Chatbox() {
   };
 
   return (
-    <div className="h-[600px] chatbox shadow-lg mt-[30px] text-center bg-gray-800 bg-opacity-90 rounded-xl p-6 border border-gray-500 flex flex-col">
+    <div className="h-full chatbox shadow-lg mt-[30px] text-center bg-gray-800 bg-opacity-90 rounded-xl p-6 border border-gray-500 flex flex-col">
       {/* Chat Header */}
       <div className="flex flex-row items-center justify-between mb-4">
         <img src={user?.avatar || avatar} height={30} width={50} className="rounded-full" alt="Sia Bhatia" />
