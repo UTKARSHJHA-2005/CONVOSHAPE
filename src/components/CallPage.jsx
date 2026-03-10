@@ -26,6 +26,10 @@ export default function CallPage({ type, onEnd }) {
 
             setStream(media);
 
+            if (localVideo.current) {
+                localVideo.current.srcObject = media;
+            }
+
         } catch (err) {
             console.error("Camera/Mic permission error:", err);
         }
