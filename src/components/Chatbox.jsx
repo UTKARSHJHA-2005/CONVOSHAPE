@@ -95,7 +95,15 @@ export default function Chatbox() {
     setIncomingCall(null);
   };
   // Reject Call
+  const rejectCall = async () => {
+    stopRingtone();
 
+    await updateDoc(doc(db, "calls", chatId), {
+      status: "rejected",
+    });
+
+    setIncomingCall(null);
+  };
   // Handle emoji selection
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
