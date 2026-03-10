@@ -1,8 +1,8 @@
 // Login Page
 import React, { useState } from "react";
-import {getAuth,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from "firebase/auth"; // Firebase Authentication
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"; // Firebase Authentication
 import { app } from "../db"; // Firebase App
-import google from "../assets/google.jpg"; // Image
+import google from "../assets/google.png"; // Image
 
 const auth = getAuth(app); // Authentication
 const Google = new GoogleAuthProvider(); // Google Authentication
@@ -49,10 +49,10 @@ export default function Login({ onNavigateToSignup }) { // Pass navigation handl
       {/* Input Fields */}
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter Email Address"
         className="w-[400px] h-[50px] mt-[10px] border-white rounded-lg px-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
-        required/><br />
+        required /><br />
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password"
         className="w-[400px] h-[50px] mt-[10px] border-white rounded-lg px-3 bg-transparent text-white placeholder-gray-300 focus:outline-none"
-        required/><br />
+        required /><br />
       {/* Login Button */}
       <button type="button" onClick={login} className="bg-blue-800 text-white hover:bg-blue-600 rounded-xl h-[50px] w-[400px] mt-[20px]">
         Login
@@ -60,7 +60,7 @@ export default function Login({ onNavigateToSignup }) { // Pass navigation handl
       {/* Google Sign In */}
       <div className="flex flex-col mt-[20px]">
         <button onClick={googlesignin}
-        className="flex items-center justify-center bg-blue-500 rounded-xl h-[50px] text-white hover:bg-blue-700 w-[400px] space-x-2">
+          className="flex items-center justify-center bg-blue-500 rounded-xl h-[50px] text-white hover:bg-blue-700 w-[400px] space-x-2">
           <img src={google} alt="google" className="w-9 h-9" />
           <span>Continue with Google</span>
         </button>
