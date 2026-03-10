@@ -69,8 +69,7 @@ export default function List() {
     chat?.user?.name?.toLowerCase().includes(Input.toLowerCase())
   );
   return (
-    <div className="shadow-lg mt-[30px] text-center bg-gray-900 bg-opacity-80 rounded-xl p-4 border border-gray-500">
-      {/* Avatar, Logout and Name */}
+    <div className="h-full shadow-lg text-center bg-gray-900 bg-opacity-80 rounded-xl p-4 border border-gray-500 overflow-y-auto">      {/* Avatar, Logout and Name */}
       <div className="flex flex-row items-center justify-between mb-5">
         <div className="flex items-center">
           <img src={avatar} height={50} width={50} className="rounded-full" alt="dp" />
@@ -79,14 +78,14 @@ export default function List() {
           </h2>
         </div>
         <img src={logout} onClick={() => auth.signOut().catch((err) => console.error("Logout Error:", err))} height={60} width={60}
-        className="cursor-pointer rounded-3xl hover:bg-white " alt="logout"/>
+          className="cursor-pointer rounded-3xl hover:bg-white " alt="logout" />
       </div>
       {/* Search Bar */}
       <div className="flex flex-row items-center mb-5">
         <img src={search} height={35} width={35} alt="search" />
         <input type="text" value={Input} onChange={(e) => setInput(e.target.value)} className="h-[30px] w-[250px] focus:outline-none p-2 rounded-md"
-          placeholder="Search chats..."/>
-        <img src={plus} height={30} width={30} onClick={toggleAddUser} className="cursor-pointer ml-3" alt="add user"/>
+          placeholder="Search chats..." />
+        <img src={plus} height={30} width={30} onClick={toggleAddUser} className="cursor-pointer ml-3" alt="add user" />
       </div>
       {/* Add User Modal */}
       {isAddUserVisible && <Adduser updateChats={updateChats} />}
@@ -94,10 +93,10 @@ export default function List() {
       <div className="mt-5">
         {filteredChats.length > 0 ? (
           filteredChats.map((chat, index) => (
-            chat?.user ? (  
+            chat?.user ? (
               <div key={index} className="flex items-center cursor-pointer justify-between bg-gray-800 p-4 rounded-md mb-4" onClick={() => handleSelect(chat)}>
                 <div className="flex items-center">
-                  <img src={chat.user.avatar || avatar} height={40} width={40} className="rounded-full" alt="user"/>
+                  <img src={chat.user.avatar || avatar} height={40} width={40} className="rounded-full" alt="user" />
                   <h3 className="text-white ml-4">{chat.user.name}</h3>
                 </div>
                 <p className="text-white">{chat?.lastMessage}</p>
