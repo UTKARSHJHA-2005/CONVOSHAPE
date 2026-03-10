@@ -149,7 +149,6 @@ export default function Chatbox() {
           <label htmlFor="image-upload">
             <img src={addimg} height={30} width={30} className="cursor-pointer" alt="Add Image" />
           </label>
-          <img src={mic} height={30} width={30} className="cursor-pointer" alt="Microphone" />
           <input type="text" value={text} onChange={(e) => setText(e.target.value)}
             className="bg-gray-800 h-[40px] flex-grow rounded-lg focus:outline-none text-white px-4" placeholder="Type a message..."
             disabled={isCurrentUserBlocked || isRecieverBlocked} />
