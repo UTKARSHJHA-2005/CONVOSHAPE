@@ -72,7 +72,6 @@ export default function Detail() {
       </div>
       {/* Chat Details: Addgroup, mute, block */}
       <div className="flex justify-center space-x-4 mt-4">
-        <img src={addgrp} height={40} width={60} className="hover:bg-white p-2 cursor-pointer rounded-full" alt="Add to Group" />
         <button onClick={handleBlock} className="flex items-center space-x-2">
           <img src={block} height={40} width={60} className={`hover:${isRecieverBlocked ? "bg-red-700" : "bg-white"} p-2 cursor-pointer rounded-full`} alt="Block" />
           <span className="text-white">{isRecieverBlocked ? "Unblock" : "Block"}</span>
