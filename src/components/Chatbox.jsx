@@ -12,6 +12,7 @@ import { db } from "../db"; // Firebase Database
 import { Userstore } from "../usestore"; // Userstore
 import { Chatstore } from "../ChatStore"; // Chatstore
 import EmojiPicker from "emoji-picker-react"; // Emojis
+import ring from "../assets/blue_flute_hindi.mp3"; // Audio
 import { arrayUnion, onSnapshot, doc, updateDoc, setDoc } from "firebase/firestore"; // Firebase Firestore
 // Google server for internet connection
 const servers = {
@@ -32,7 +33,7 @@ export default function Chatbox() {
   const endRef = useRef(null); // Scrolling
   const [incomingCall, setIncomingCall] = useState(null); // Incoming call
   const [callType, setCallType] = useState(null); // Call type
-  const ringtone = useRef(new Audio("/ringtone.mp3"));  // Play
+  const ringtone = useRef(new Audio(""));  // Play
   const playRingtone = () => {
     ringtone.current.loop = true;
     ringtone.current.play();
