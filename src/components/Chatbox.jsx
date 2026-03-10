@@ -25,6 +25,12 @@ export default function Chatbox() {
   }, [Chat]);
   // Fetch chat details
   useEffect(() => {
+    const unsub = onSnapshot(doc(db, "chats", chatId), (res) => {
+      setChat(res.data());
+    });
+    return () => unsub();
+  }, [chatId]);
+  useEffect(() => {
 
     const unsub = onSnapshot(doc(db, "user", currentUser.id), (snap) => {
 
@@ -36,7 +42,7 @@ export default function Chatbox() {
 
     return () => unsub();
 
-  }, [currentUser.id]);
+  }, [chatId]);
   // Blocked Users
   useEffect(() => {
     const fetchBlocked = async () => {
@@ -69,9 +75,7 @@ export default function Chatbox() {
   // Handle sending a message
   const handleSend = async () => {
     if (!text.trim() && !image) return;
-
     let imageUrl = null;
-
     try {
 
       if (image) {
@@ -123,7 +127,6 @@ export default function Chatbox() {
       <div className="chat-area flex-grow overflow-y-auto p-4 rounded-lg shadow-lg scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-800">
         <div className="messages">
           {Chat?.messages
-            ?.filter((msg) => !blockedUsers.includes(msg.senderId))
             ?.map((message, idx) => (
               <div key={idx} className={`w-[100%] mb-2 flex ${message.senderId === currentUser.id
                 ? "flex-row-reverse text-right"
