@@ -19,6 +19,8 @@ export default function CallPage({ type, onEnd }) {
 
     const startMedia = async () => {
         try {
+            pc.current = new RTCPeerConnection(servers);
+
             const media = await navigator.mediaDevices.getUserMedia({
                 video: type === "video",
                 audio: true,
@@ -29,6 +31,18 @@ export default function CallPage({ type, onEnd }) {
             if (localVideo.current) {
                 localVideo.current.srcObject = media;
             }
+
+            // add tracks to peer connection
+            media.getTracks().forEach((track) => {
+                pc.current.addTrack(track, media);
+            });
+
+            // listen for remote stream
+            pc.current.ontrack = (event) => {
+                if (remoteVideo.current) {
+                    remoteVideo.current.srcObject = event.streams[0];
+                }
+            };
 
         } catch (err) {
             console.error("Camera/Mic permission error:", err);
