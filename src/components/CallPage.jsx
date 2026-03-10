@@ -23,8 +23,28 @@ export default function CallPage({ type, chatId, onEnd }) {
                 video: type === "video",
                 audio: true,
             });
+
+            setStream(media);
+
+            if (localVideo.current) {
+                localVideo.current.srcObject = media;
+            }
+
+            // add tracks FIRST
+            media.getTracks().forEach((track) => {
+                pc.current.addTrack(track, media);
+            });
+
+            // receive remote stream
+            pc.current.ontrack = (event) => {
+                if (remoteVideo.current) {
+                    remoteVideo.current.srcObject = event.streams[0];
+                }
+            };
+
             const callDoc = doc(db, "calls", chatId);
 
+            // create offer AFTER tracks
             const offer = await pc.current.createOffer();
             await pc.current.setLocalDescription(offer);
 
@@ -35,26 +55,9 @@ export default function CallPage({ type, chatId, onEnd }) {
                 },
             });
 
-            setStream(media);
-
-            if (localVideo.current) {
-                localVideo.current.srcObject = media;
-            }
-
-            // add tracks to peer connection
-            media.getTracks().forEach((track) => {
-                pc.current.addTrack(track, media);
-            });
-
-            // listen for remote stream
-            pc.current.ontrack = (event) => {
-                if (remoteVideo.current) {
-                    remoteVideo.current.srcObject = event.streams[0];
-                }
-            };
             pc.current.onicecandidate = async (event) => {
                 if (event.candidate) {
-                    await updateDoc(doc(db, "calls", chatId), {
+                    await updateDoc(callDoc, {
                         candidate: JSON.stringify(event.candidate),
                     });
                 }
