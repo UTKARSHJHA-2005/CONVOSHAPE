@@ -2,17 +2,17 @@
 import React from 'react'
 // Componenets 
 import List from '../components/List'
-import Detail from '../components/detail'
+import Detail from '../components/Detail'
 import Chatbox from '../components/Chatbox'
 import { Chatstore } from '../ChatStore' // Chat Zustand Management
 
 export default function Chat() {
-  const {chatId}= Chatstore() // Chat Management
+  const { chatId } = Chatstore() // Chat Management
   return (
     <div className=' flex flex-row'>
-      <List/>
-      {chatId &&< Chatbox/>}
-      {chatId &&<Detail/>}
+      <List />
+      {chatId && < Chatbox />}
+      {chatId && <Detail />}
     </div>
   )
 }
