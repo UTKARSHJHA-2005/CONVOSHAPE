@@ -149,7 +149,7 @@ export default function Chatbox() {
             />
           </label>
           <input type="text" value={text} onChange={(e) => setText(e.target.value)}
-            className="bg-gray-800 h-[40px] flex-grow rounded-lg focus:outline-none text-white px-4" placeholder="Type a message..."
+            className="bg-gray-800 h-[40px] flex-1 min-w-0 rounded-lg focus:outline-none text-white px-3 text-sm md:text-base" placeholder="Type a message..."
             disabled={isCurrentUserBlocked || isRecieverBlocked} />
           <div className="relative">
             <img src={emojiIcon} height={30} width={30} className="cursor-pointer" alt="Emoji" onClick={() => setOpen((prev) => !prev)} />
