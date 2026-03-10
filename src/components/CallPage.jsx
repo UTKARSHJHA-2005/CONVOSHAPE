@@ -66,44 +66,47 @@ export default function CallPage({ type, onEnd }) {
     };
 
     return (
-        <div className="fixed inset-0 bg-black flex flex-col items-center justify-center">
-
+        <div className="fixed bottom-5 right-5 w-[350px] bg-gray-900 p-4 rounded-xl shadow-xl flex flex-col items-center z-50">
             <div className="flex space-x-6 mb-6">
-                <video
-                    ref={localVideo}
-                    autoPlay
-                    muted
-                    className="w-64 rounded-lg"
-                />
+                <div className="relative w-full">
 
-                <video
-                    ref={remoteVideo}
-                    autoPlay
-                    className="w-64 rounded-lg"
-                />
+                    <video
+                        ref={remoteVideo}
+                        autoPlay
+                        className="w-full rounded-lg"
+                    />
+
+                    <video
+                        ref={localVideo}
+                        autoPlay
+                        muted
+                        className="w-24 rounded-lg absolute bottom-2 right-2 border border-white"
+                    />
+
+                </div>
             </div>
 
             <div className="flex space-x-6">
 
                 <button
                     onClick={toggleMute}
-                    className="bg-gray-700 text-white px-4 py-2 rounded"
+                    className="bg-gray-700 text-white px-3 py-2 rounded"
                 >
                     {muted ? "Unmute" : "Mute"}
                 </button>
 
                 <button
                     onClick={toggleVideo}
-                    className="bg-gray-700 text-white px-4 py-2 rounded"
+                    className="bg-gray-700 text-white px-3 py-2 rounded"
                 >
                     {videoOn ? "Video Off" : "Video On"}
                 </button>
 
                 <button
                     onClick={endCall}
-                    className="bg-red-600 text-white px-4 py-2 rounded"
+                    className="bg-red-600 text-white px-3 py-2 rounded"
                 >
-                    End Call
+                    End
                 </button>
 
             </div>
