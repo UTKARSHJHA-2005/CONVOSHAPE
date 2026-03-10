@@ -270,7 +270,6 @@ export default function Chatbox() {
         <CallPage
           type={callType}
           chatId={chatId}
-          currentUser={currentUser}
           onEnd={() => setCallType(null)}
         />
       )}
