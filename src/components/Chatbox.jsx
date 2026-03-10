@@ -123,6 +123,17 @@ export default function Chatbox() {
 
     return () => unsub();
   }, [chatId]);
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, "calls", chatId), (snap) => {
+      const data = snap.data();
+
+      if (data?.status === "accepted") {
+        setCallType(data.type);
+      }
+    });
+
+    return () => unsub();
+  }, []);
 
   return (
     <div className="h-[600px] chatbox shadow-lg mt-[30px] text-center bg-gray-800 bg-opacity-90 rounded-xl p-6 border border-gray-500 flex flex-col">
