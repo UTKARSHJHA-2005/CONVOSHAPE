@@ -53,18 +53,28 @@ export default function Chatbox() {
   };
   // Handle sending a message
   const handleSend = async () => {
-    if (!text.trim() && !imageBase64) return;
+    if (!text.trim() && !image) return;
+
+    let imageUrl = null;
+
     try {
+
+      if (image) {
+        imageUrl = await uploadImage(image);
+      }
+
       await updateDoc(doc(db, "chats", chatId), {
         messages: arrayUnion({
           senderId: currentUser.id,
           text,
-          imageBase64,
+          image: imageUrl,
           createdAt: new Date(),
         }),
       });
+
       setText("");
-      setImageBase64(null);
+      setImage(null);
+
     } catch (error) {
       console.error("Error sending message:", error);
     }
