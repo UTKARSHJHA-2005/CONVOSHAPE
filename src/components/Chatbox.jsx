@@ -12,7 +12,7 @@ import { Userstore } from "../usestore"; // Userstore
 import { Chatstore } from "../ChatStore"; // Chatstore
 import EmojiPicker from "emoji-picker-react"; // Emojis
 import { arrayUnion, onSnapshot, doc, updateDoc } from "firebase/firestore"; // Firebase Firestore
-
+// Google server for internet connection
 const servers = {
   iceServers: [
     {
