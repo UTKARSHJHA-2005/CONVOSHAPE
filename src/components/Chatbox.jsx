@@ -64,18 +64,6 @@ export default function Chatbox() {
       console.error("Error sending message:", error);
     }
   };
-  // Call
-  const startCall = async (type) => {
-    setIsCaller(true); // THIS USER IS CALLER
-
-    await setDoc(doc(db, "calls", chatId), {
-      callerId: currentUser.id,
-      receiverId: user.id,
-      type: type,
-      status: "calling",
-      createdAt: new Date(),
-    });
-  };
   // Handle image upload
   const handleImageChange = (e) => {
     const file = e.target.files[0];
