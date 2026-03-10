@@ -24,17 +24,6 @@ export default function Chatbox() {
   const endRef = useRef(null); // Scrolling
   const [incomingCall, setIncomingCall] = useState(null); // Incoming call
   const [callType, setCallType] = useState(null); // Call type
-  const ringtone = useRef(new Audio(ring));  // Play
-  const [isCaller, setIsCaller] = useState(false);
-  const playRingtone = () => {
-    ringtone.current.loop = true;
-    ringtone.current.play();
-  };
-
-  const stopRingtone = () => {
-    ringtone.current.pause();
-    ringtone.current.currentTime = 0;
-  };
   // Smooth scrolling to the end of the chat
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
