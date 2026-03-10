@@ -87,27 +87,6 @@ export default function Chatbox() {
       reader.readAsDataURL(file);
     }
   };
-  // Accept Call
-  const acceptCall = async () => {
-    stopRingtone();
-
-    setIsCaller(false); // RECEIVER
-
-    await updateDoc(doc(db, "calls", chatId), {
-      status: "accepted",
-    });
-
-    setCallType(incomingCall.type);
-    setIncomingCall(null);
-  };
-  // Reject Call
-  const rejectCall = async () => {
-    stopRingtone();
-    await updateDoc(doc(db, "calls", chatId), {
-      status: "rejected",
-    });
-    setIncomingCall(null);
-  };
   // Handle emoji selection
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
