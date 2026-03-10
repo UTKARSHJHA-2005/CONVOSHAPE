@@ -56,6 +56,13 @@ export default function CallPage({ type, onEnd }) {
                     remoteVideo.current.srcObject = event.streams[0];
                 }
             };
+            pc.current.onicecandidate = async (event) => {
+                if (event.candidate) {
+                    await updateDoc(doc(db, "calls", chatId), {
+                        candidate: JSON.stringify(event.candidate),
+                    });
+                }
+            };
 
         } catch (err) {
             console.error("Camera/Mic permission error:", err);
