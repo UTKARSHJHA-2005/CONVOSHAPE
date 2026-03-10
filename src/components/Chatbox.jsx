@@ -11,7 +11,6 @@ import { db } from "../db"; // Firebase Database
 import { Userstore } from "../usestore"; // Userstore
 import { Chatstore } from "../ChatStore"; // Chatstore
 import EmojiPicker from "emoji-picker-react"; // Emojis
-import ring from "../assets/best_flute_hindi.mp3"; // Audio
 import { arrayUnion, onSnapshot, doc, updateDoc, setDoc } from "firebase/firestore"; // Firebase Firestore
 
 export default function Chatbox() {
