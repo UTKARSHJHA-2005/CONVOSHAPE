@@ -28,6 +28,17 @@ export default function CallPage({ type, chatId, isCaller, onEnd }) {
                     track.enabled = false;
                 });
             }
+            if (isCaller) {
+                const offer = await pc.current.createOffer();
+                await pc.current.setLocalDescription(offer);
+
+                await setDoc(callDoc, {
+                    offer: {
+                        type: offer.type,
+                        sdp: offer.sdp,
+                    },
+                });
+            }
 
             setStream(media);
 
@@ -49,17 +60,6 @@ export default function CallPage({ type, chatId, isCaller, onEnd }) {
 
             const callDoc = doc(db, "calls", chatId);
 
-            if (isCaller) {
-                const offer = await pc.current.createOffer();
-                await pc.current.setLocalDescription(offer);
-
-                await setDoc(callDoc, {
-                    offer: {
-                        type: offer.type,
-                        sdp: offer.sdp,
-                    },
-                });
-            }
             pc.current.onicecandidate = async (event) => {
                 if (event.candidate) {
                     await updateDoc(callDoc, {
