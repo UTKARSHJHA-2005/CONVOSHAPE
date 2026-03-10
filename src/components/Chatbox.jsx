@@ -32,6 +32,7 @@ export default function Chatbox() {
   const localVideoRef = useRef(null); // Video local
   const remoteVideoRef = useRef(null); // Video
   const pcRef = useRef(null);  // Laptop 
+  const [callType, setCallType] = useState(null); // Call type
   const localStreamRef = useRef(null); // Streaming
   // Smooth scrolling to the end of the chat
   useEffect(() => {
