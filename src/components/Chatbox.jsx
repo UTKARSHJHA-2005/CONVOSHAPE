@@ -249,6 +249,10 @@ export default function Chatbox() {
           </button>
         </div>
       </div>
+      <div className="fixed bottom-5 right-5 flex flex-col space-y-2">
+        <video ref={localVideoRef} autoPlay muted className="w-40 rounded-lg"></video>
+        <video ref={remoteVideoRef} autoPlay className="w-40 rounded-lg"></video>
+      </div>
     </div>
   );
 }
