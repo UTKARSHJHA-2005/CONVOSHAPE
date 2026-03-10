@@ -85,6 +85,7 @@ export default function Chatbox() {
       reader.readAsDataURL(file);
     }
   };
+  // Accept Call
   const acceptCall = async () => {
     stopRingtone();
     await updateDoc(doc(db, "calls", chatId), {
@@ -93,6 +94,8 @@ export default function Chatbox() {
     setCallType(incomingCall.type);
     setIncomingCall(null);
   };
+  // Reject Call
+
   // Handle emoji selection
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
