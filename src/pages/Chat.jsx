@@ -10,20 +10,20 @@ export default function Chat() {
 
   return (
 
-    <div className="flex flex-col md:flex-row h-screen gap-3 p-2">
+    <div className="flex flex-col lg:flex-row gap-3 p-2 min-h-screen">
 
       {/* Left Panel */}
-      <div className={`${chatId ? "hidden md:block" : "block"} md:w-[30%] lg:w-[25%]`}>
+      <div className="w-full lg:w-[25%]">
         <List />
       </div>
 
       {/* Middle Panel */}
-      <div className={`${chatId ? "block" : "hidden md:block"} flex-1`}>
+      <div className="w-full lg:flex-1">
         {chatId && <Chatbox />}
       </div>
 
       {/* Right Panel */}
-      <div className="hidden lg:block lg:w-[25%]">
+      <div className="w-full lg:w-[25%]">
         {chatId && <Detail />}
       </div>
 
