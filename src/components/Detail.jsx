@@ -70,12 +70,30 @@ export default function Detail() {
           <p className="font-bold text-white">{user?.name || "User"}</p>
         </div>
       </div>
-      {/* Chat Details: Addgroup, mute, block */}
-      <div className="flex justify-center space-x-4 mt-4">
-        <button onClick={handleBlock} className="flex items-center space-x-2">
-          <img src={block} height={40} width={60} className={`hover:${isRecieverBlocked ? "bg-red-700" : "bg-white"} p-2 cursor-pointer rounded-full`} alt="Block" />
-          <span className="text-white">{isRecieverBlocked ? "Unblock" : "Block"}</span>
+      <div className="flex flex-col items-center mt-4 space-y-2">
+
+        <button
+          onClick={handleBlock}
+          className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition 
+    ${isRecieverBlocked ? "bg-red-600 hover:bg-red-700" : "bg-gray-600 hover:bg-gray-700"}`}
+        >
+          <img
+            src={block}
+            height={20}
+            width={20}
+            alt="Block"
+          />
+          <span className="text-white font-medium">
+            {isRecieverBlocked ? "Unblock User" : "Block User"}
+          </span>
         </button>
+
+        {isRecieverBlocked && (
+          <p className="text-red-400 text-sm">
+            You have blocked this user
+          </p>
+        )}
+
       </div>
       <hr className="my-2 border-gray-500" />
       {/* Sent Images */}
