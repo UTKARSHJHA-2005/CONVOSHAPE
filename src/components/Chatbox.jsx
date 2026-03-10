@@ -2,9 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 // Images
 import avatar from '../assets/avatar.jpg';
-import phone from "../assets/phone-call.png";
-import video from "../assets/video.png";
-import mic from "../assets/mic.png";
 import emojiIcon from "../assets/emoji.png";
 import addimg from "../assets/addimg.png";
 import { db } from "../db"; // Firebase Database
