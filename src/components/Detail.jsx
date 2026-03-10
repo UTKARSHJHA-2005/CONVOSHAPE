@@ -10,7 +10,6 @@ import { db } from "../db";  // Firebase Database
 
 export default function Detail() {
   const { chatId, user } = Chatstore(); // Chat Management
-  const { currentUser } = Userstore(); // User Management
   const [images, setImages] = useState([]); // State to store sent images
 
   // Storing the messages in chats collection in db if chat id and user id is present.
