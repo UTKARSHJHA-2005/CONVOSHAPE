@@ -54,8 +54,14 @@ export default function CallPage({ type, onEnd }) {
     };
 
     const toggleMute = () => {
-        stream.getAudioTracks()[0].enabled = muted;
-        setMuted(!muted);
+        if (!stream) return;
+
+        const audioTrack = stream.getAudioTracks()[0];
+
+        if (!audioTrack) return;
+
+        audioTrack.enabled = !audioTrack.enabled;
+        setMuted(!audioTrack.enabled);
     };
 
     const endCall = () => {
