@@ -34,13 +34,13 @@ export default function Chatbox() {
   const [callType, setCallType] = useState(null); // Call type
   const ringtone = useRef(new Audio("/ringtone.mp3"));  // Play
   const playRingtone = () => {
-    ringtone.loop = true;
-    ringtone.play();
+    ringtone.current.loop = true;
+    ringtone.current.play();
   };
-  // Stop
+
   const stopRingtone = () => {
-    ringtone.pause();
-    ringtone.currentTime = 0;
+    ringtone.current.pause();
+    ringtone.current.currentTime = 0;
   };
   // Smooth scrolling to the end of the chat
   useEffect(() => {
