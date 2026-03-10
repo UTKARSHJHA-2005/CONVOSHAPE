@@ -121,10 +121,13 @@ export default function Chatbox() {
                     {message.text}
                   </p>
                 )}
-                {message.imageBase64 && (
-                  <img src={message.imageBase64} alt="Sent"
+                {message.image && (
+                  <img
+                    src={message.image}
+                    alt="Sent"
                     className={`w-auto cursor-pointer h-auto max-w-[200px] mt-2 rounded-lg ${message.senderId === currentUser.id ? "float-right" : "float-left"
-                      }`} />
+                      }`}
+                  />
                 )}
               </div>
             </div>
