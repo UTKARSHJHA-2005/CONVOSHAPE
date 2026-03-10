@@ -32,8 +32,7 @@ export default function Chatbox() {
   const endRef = useRef(null); // Scrolling
   const [incomingCall, setIncomingCall] = useState(null); // Incoming call
   const [callType, setCallType] = useState(null); // Call type
-  const ringtone = new Audio("/ringtone.mp3"); // Sound
-  // Play
+  const ringtone = useRef(new Audio("/ringtone.mp3"));  // Play
   const playRingtone = () => {
     ringtone.loop = true;
     ringtone.play();
