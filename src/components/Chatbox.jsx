@@ -37,7 +37,6 @@ export default function Chatbox() {
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "chat_app");
-    data.append("cloud_name", "dhszvdzft");
 
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/dhszvdzft/image/upload",
