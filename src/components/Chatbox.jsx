@@ -202,10 +202,34 @@ export default function Chatbox() {
           </button>
         </div>
       </div>
-      <div className="fixed bottom-5 right-5 flex flex-col space-y-2">
-        <video ref={localVideoRef} autoPlay muted className="w-40 rounded-lg"></video>
-        <video ref={remoteVideoRef} autoPlay className="w-40 rounded-lg"></video>
-      </div>
+      {incomingCall && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center">
+          <div className="bg-gray-800 p-6 rounded-lg text-center">
+
+            <p className="text-white text-lg mb-4">
+              Incoming {incomingCall.type} call
+            </p>
+
+            <div className="flex space-x-4">
+
+              <button
+                onClick={acceptCall}
+                className="bg-green-500 px-4 py-2 rounded"
+              >
+                Accept
+              </button>
+
+              <button
+                onClick={rejectCall}
+                className="bg-red-500 px-4 py-2 rounded"
+              >
+                Reject
+              </button>
+
+            </div>
+          </div>
+        </div>
+      )}
       {callType && (
         <CallPage
           type={callType}
