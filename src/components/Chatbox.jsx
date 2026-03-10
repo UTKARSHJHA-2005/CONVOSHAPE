@@ -45,8 +45,8 @@ export default function Chatbox() {
         body: data,
       }
     );
-
     const result = await res.json();
+    console.log(result);
 
     return result.secure_url;
   };
