@@ -31,13 +31,13 @@ export default function Chatbox() {
   const [Chat, setChat] = useState(); // Chat state
   const endRef = useRef(null); // Scrolling
   const [callType, setCallType] = useState(null); // Call type
-  const ringtone = new Audio("/ringtone.mp3");
-
+  const ringtone = new Audio("/ringtone.mp3"); // Sound
+  // Play
   const playRingtone = () => {
     ringtone.loop = true;
     ringtone.play();
   };
-
+  // Stop
   const stopRingtone = () => {
     ringtone.pause();
     ringtone.currentTime = 0;
