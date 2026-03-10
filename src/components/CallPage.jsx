@@ -152,6 +152,10 @@ export default function CallPage({ type, chatId, onEnd }) {
 
         return () => unsub();
     }, []);
+    useEffect(() => {
+        if (!chatId) return;
+        startMedia();
+    }, [chatId]);
 
     return (
         <div className="fixed bottom-5 right-5 w-[350px] bg-gray-900 p-4 rounded-xl shadow-xl flex flex-col items-center z-50">
