@@ -83,8 +83,13 @@ export default function List() {
       {/* Search Bar */}
       <div className="flex flex-row items-center mb-5">
         <img src={search} height={35} width={35} alt="search" />
-        <input type="text" value={Input} onChange={(e) => setInput(e.target.value)} className="h-[30px] w-[250px] focus:outline-none p-2 rounded-md"
-          placeholder="Search chats..." />
+        <input
+          type="text"
+          value={Input}
+          onChange={(e) => setInput(e.target.value)}
+          className="h-[35px] w-full focus:outline-none p-2 rounded-md"
+          placeholder="Search chats..."
+        />
         <img src={plus} height={30} width={30} onClick={toggleAddUser} className="cursor-pointer ml-3" alt="add user" />
       </div>
       {/* Add User Modal */}
