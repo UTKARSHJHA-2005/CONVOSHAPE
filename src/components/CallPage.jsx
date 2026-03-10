@@ -65,8 +65,14 @@ export default function CallPage({ type, onEnd }) {
     };
 
     const endCall = () => {
-        stream.getTracks().forEach((track) => track.stop());
-        pc.current.close();
+        if (stream) {
+            stream.getTracks().forEach((track) => track.stop());
+        }
+
+        if (pc.current) {
+            pc.current.close();
+        }
+
         onEnd();
     };
 
