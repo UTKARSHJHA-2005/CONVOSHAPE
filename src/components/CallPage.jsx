@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { doc, setDoc, updateDoc, onSnapshot } from "firebase/firestore";
+import { db } from "../db";
 
 const servers = {
     iceServers: [{ urls: ["stun:stun.l.google.com:19302"] }],
