@@ -152,7 +152,7 @@ export default function Chatbox() {
             className="bg-gray-800 h-[40px] flex-1 min-w-0 rounded-lg focus:outline-none text-white px-3 text-sm md:text-base" placeholder="Type a message..."
             disabled={isCurrentUserBlocked || isRecieverBlocked} />
           <div className="relative">
-            <img src={emojiIcon} height={30} width={30} className="cursor-pointer" alt="Emoji" onClick={() => setOpen((prev) => !prev)} />
+            <img src={emojiIcon} className="w-6 h-6 md:w-8 md:h-8 cursor-pointer" alt="Emoji" onClick={() => setOpen((prev) => !prev)} />
             {open && (
               <div className="absolute bottom-10 right-0 z-50">
                 <EmojiPicker onEmojiClick={handleEmoji} />
