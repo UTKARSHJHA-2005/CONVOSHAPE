@@ -43,8 +43,7 @@ export default function Detail() {
   }, [chatId, user?.id]);
 
   return (
-    <div className="shadow-lg mt-[30px] text-center bg-gray-800 bg-opacity-90 rounded-xl p-6 border border-gray-500">
-      {/* User Details */}
+    <div className="h-full shadow-lg text-center bg-gray-800 bg-opacity-90 rounded-xl p-6 border border-gray-500 overflow-y-auto">      {/* User Details */}
       <div className="flex flex-col items-center">
         <img src={user?.avatar || avatar} height={50} width={50} className="rounded-full" alt="User Avatar" />
         <div className="text-center mt-2">
