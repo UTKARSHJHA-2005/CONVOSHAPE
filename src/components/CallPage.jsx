@@ -95,6 +95,7 @@ export default function CallPage({ type, onEnd }) {
                     <video
                         ref={remoteVideo}
                         autoPlay
+                        playsInline
                         className="w-full rounded-lg"
                     />
 
