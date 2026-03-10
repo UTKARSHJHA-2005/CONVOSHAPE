@@ -27,6 +27,17 @@ export default function CallPage({ type, onEnd }) {
                 video: type === "video",
                 audio: true,
             });
+            const callDoc = doc(db, "calls", chatId);
+
+            const offer = await pc.current.createOffer();
+            await pc.current.setLocalDescription(offer);
+
+            await setDoc(callDoc, {
+                offer: {
+                    type: offer.type,
+                    sdp: offer.sdp,
+                },
+            });
 
             setStream(media);
 
@@ -88,6 +99,52 @@ export default function CallPage({ type, onEnd }) {
 
         onEnd();
     };
+
+    useEffect(() => {
+        const callDoc = doc(db, "calls", chatId);
+
+        const unsub = onSnapshot(callDoc, async (snapshot) => {
+            const data = snapshot.data();
+
+            if (!pc.current) return;
+
+            if (data?.offer && !pc.current.currentRemoteDescription) {
+                await pc.current.setRemoteDescription(
+                    new RTCSessionDescription(data.offer)
+                );
+
+                const answer = await pc.current.createAnswer();
+                await pc.current.setLocalDescription(answer);
+
+                await updateDoc(callDoc, {
+                    answer: {
+                        type: answer.type,
+                        sdp: answer.sdp,
+                    },
+                });
+            }
+
+            if (data?.answer && !pc.current.currentRemoteDescription) {
+                await pc.current.setRemoteDescription(
+                    new RTCSessionDescription(data.answer)
+                );
+            }
+        });
+
+        return () => unsub();
+    }, []);
+    useEffect(() => {
+        const unsub = onSnapshot(doc(db, "calls", chatId), (snap) => {
+            const data = snap.data();
+
+            if (data?.candidate) {
+                const candidate = new RTCIceCandidate(JSON.parse(data.candidate));
+                pc.current.addIceCandidate(candidate);
+            }
+        });
+
+        return () => unsub();
+    }, []);
 
     return (
         <div className="fixed bottom-5 right-5 w-[350px] bg-gray-900 p-4 rounded-xl shadow-xl flex flex-col items-center z-50">
