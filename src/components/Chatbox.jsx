@@ -11,7 +11,7 @@ import { db } from "../db"; // Firebase Database
 import { Userstore } from "../usestore"; // Userstore
 import { Chatstore } from "../ChatStore"; // Chatstore
 import EmojiPicker from "emoji-picker-react"; // Emojis
-import { arrayUnion, onSnapshot, doc, updateDoc, setDoc } from "firebase/firestore"; // Firebase Firestore
+import { arrayUnion, onSnapshot, doc, updateDoc } from "firebase/firestore"; // Firebase Firestore
 
 export default function Chatbox() {
   const [text, setText] = useState(""); // Text input state
