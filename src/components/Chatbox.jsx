@@ -21,10 +21,10 @@ export default function Chatbox() {
   const { currentUser } = Userstore(); // Current User
   const [Chat, setChat] = useState(); // Chat state
   const endRef = useRef(null); // Scrolling
-  const localVideoRef = useRef(null);
-  const remoteVideoRef = useRef(null);
-  const pcRef = useRef(null);
-  const localStreamRef = useRef(null);
+  const localVideoRef = useRef(null); // Video local
+  const remoteVideoRef = useRef(null); // Video
+  const pcRef = useRef(null);  // Laptop 
+  const localStreamRef = useRef(null); // Streaming
   // Smooth scrolling to the end of the chat
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
