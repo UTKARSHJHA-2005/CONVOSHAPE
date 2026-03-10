@@ -112,34 +112,6 @@ export default function Chatbox() {
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
   };
-  // Incoming Calls
-  useEffect(() => {
-    const unsub = onSnapshot(doc(db, "calls", chatId), (docSnap) => {
-      const data = docSnap.data();
-
-      if (
-        data &&
-        data.receiverId === currentUser.id &&
-        data.status === "calling"
-      ) {
-        setIncomingCall(data);
-        playRingtone();
-      }
-    });
-
-    return () => unsub();
-  }, [chatId, currentUser]);
-  useEffect(() => {
-    const unsub = onSnapshot(doc(db, "calls", chatId), (snap) => {
-      const data = snap.data();
-
-      if (data?.status === "accepted") {
-        setCallType(data.type);
-      }
-    });
-
-    return () => unsub();
-  }, []);
 
   return (
     <div className="h-[600px] chatbox shadow-lg mt-[30px] text-center bg-gray-800 bg-opacity-90 rounded-xl p-6 border border-gray-500 flex flex-col">
@@ -149,6 +121,8 @@ export default function Chatbox() {
         <div>
           <p className="font-bold text-white">{user?.name || "User"}</p>
           <p className="text-sm text-green-400">Hii, I am using Convo</p>
+        </div>
+        <div className="flex flex-row space-x-4">
         </div>
       </div>
       <hr className="border-gray-500" />
