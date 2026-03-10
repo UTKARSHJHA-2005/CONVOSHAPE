@@ -44,17 +44,17 @@ export default function CallPage({ type, chatId, isCaller, onEnd }) {
 
             const callDoc = doc(db, "calls", chatId);
 
-            // create offer AFTER tracks
-            const offer = await pc.current.createOffer();
-            await pc.current.setLocalDescription(offer);
+            if (isCaller) {
+                const offer = await pc.current.createOffer();
+                await pc.current.setLocalDescription(offer);
 
-            await setDoc(callDoc, {
-                offer: {
-                    type: offer.type,
-                    sdp: offer.sdp,
-                },
-            });
-
+                await setDoc(callDoc, {
+                    offer: {
+                        type: offer.type,
+                        sdp: offer.sdp,
+                    },
+                });
+            }
             pc.current.onicecandidate = async (event) => {
                 if (event.candidate) {
                     await updateDoc(callDoc, {
