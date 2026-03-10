@@ -66,37 +66,12 @@ export default function Chatbox() {
   };
   // Call
   const startCall = async (type) => {
-    pcRef.current = new RTCPeerConnection(servers);
-
-    const stream = await navigator.mediaDevices.getUserMedia({
-      video: type === "video",
-      audio: true,
-    });
-
-    localStreamRef.current = stream;
-
-    stream.getTracks().forEach((track) => {
-      pcRef.current.addTrack(track, stream);
-    });
-
-    if (localVideoRef.current) {
-      localVideoRef.current.srcObject = stream;
-    }
-
-    pcRef.current.ontrack = (event) => {
-      if (remoteVideoRef.current) {
-        remoteVideoRef.current.srcObject = event.streams[0];
-      }
-    };
-
-    const offer = await pcRef.current.createOffer();
-    await pcRef.current.setLocalDescription(offer);
-
-    await updateDoc(doc(db, "calls", chatId), {
-      offer: {
-        type: offer.type,
-        sdp: offer.sdp,
-      },
+    await setDoc(doc(db, "calls", chatId), {
+      callerId: currentUser.id,
+      receiverId: user.id,
+      type: type,
+      status: "calling",
+      createdAt: new Date(),
     });
   };
   // Handle image upload
@@ -116,40 +91,16 @@ export default function Chatbox() {
   };
   // Incoming Calls
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "calls", chatId), async (snapshot) => {
-      const data = snapshot.data();
+    const unsub = onSnapshot(doc(db, "calls", chatId), (docSnap) => {
+      const data = docSnap.data();
 
-      if (!pcRef.current && data?.offer) {
-        pcRef.current = new RTCPeerConnection(servers);
-
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-          audio: true,
-        });
-
-        stream.getTracks().forEach((track) => {
-          pcRef.current.addTrack(track, stream);
-        });
-
-        await pcRef.current.setRemoteDescription(
-          new RTCSessionDescription(data.offer)
-        );
-
-        const answer = await pcRef.current.createAnswer();
-        await pcRef.current.setLocalDescription(answer);
-
-        await updateDoc(doc(db, "calls", chatId), {
-          answer: {
-            type: answer.type,
-            sdp: answer.sdp,
-          },
-        });
-      }
-
-      if (pcRef.current && data?.answer) {
-        await pcRef.current.setRemoteDescription(
-          new RTCSessionDescription(data.answer)
-        );
+      if (
+        data &&
+        data.receiverId === currentUser.id &&
+        data.status === "calling"
+      ) {
+        setIncomingCall(data);
+        playRingtone();
       }
     });
 
