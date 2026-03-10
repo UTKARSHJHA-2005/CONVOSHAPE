@@ -66,8 +66,8 @@ export default function Chatbox() {
       await updateDoc(doc(db, "chats", chatId), {
         messages: arrayUnion({
           senderId: currentUser.id,
-          text,
-          image: imageUrl,
+          text: text || "",
+          image: imageUrl || null,
           createdAt: new Date(),
         }),
       });
