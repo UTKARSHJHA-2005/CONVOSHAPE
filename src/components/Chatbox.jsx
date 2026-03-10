@@ -142,8 +142,12 @@ export default function Chatbox() {
         {/* Add Image,mic,text,emoji Button */}
         <div className="flex items-center gap-2">
           <input type="file" onChange={handleImageChange} className="hidden" id="image-upload" />
-          <label htmlFor="image-upload">
-            <img src={addimg} height={30} width={30} className="cursor-pointer" alt="Add Image" />
+          <label htmlFor="image-upload" className="flex items-center">
+            <img
+              src={addimg}
+              className="w-6 h-6 md:w-8 md:h-8 cursor-pointer"
+              alt="Add Image"
+            />
           </label>
           <input type="text" value={text} onChange={(e) => setText(e.target.value)}
             className="bg-gray-800 h-[40px] flex-grow rounded-lg focus:outline-none text-white px-4" placeholder="Type a message..."
