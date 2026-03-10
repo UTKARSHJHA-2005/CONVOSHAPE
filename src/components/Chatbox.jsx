@@ -50,6 +50,7 @@ export default function Chatbox() {
       console.error("Error sending message:", error);
     }
   };
+  // Call
   const startCall = async (type) => {
     pcRef.current = new RTCPeerConnection(servers);
 
